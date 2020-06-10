@@ -1,5 +1,3 @@
-export { };
-
 const inputWaktu: string = "20:20";
 const waktu: string[] = inputWaktu.split("");
 
@@ -62,19 +60,10 @@ if (wa < 10) {
 }
 
 
-function formatZona(bujur: number): string {
-   // const zona = { 105: "WIB", 120: "WITA", 135: "WIT" };
-   // return zona[bujur];
-
-   if (bujur === 105) {
-      return "WIB";
-   } else if (bujur === 120) {
-      return "WITA";
-   } else if (bujur === 135) {
-      return "WIT";
-   } else {
-      return "YOU FUCKING FREAK...";
-   }
+function formatZona(bujur: number) {
+   if (bujur === 105) return "WIB";
+   if (bujur === 120) return "WITA";
+   if (bujur === 135) return "WIT";
 }
 
 

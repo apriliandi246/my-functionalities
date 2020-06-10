@@ -1,9 +1,4 @@
 /*
-   TODO : 
-   - membuat zona waktu berdasarkan provinsinya.
-*/
-
-/*
    WIB = 105
    WITA = 120
    WIT = 135
@@ -93,21 +88,17 @@ if (hasilKonversi < 10) {
 }
 
 
-
 // fungsi untuk mengembalikan format zona tertentu
 function formatZona(bujur) {
    const zona = { 105: "WIB", 120: "WITA", 135: "WIT" };
-
    return zona[bujur];
 }
-
 
 
 /* 
    - fungsi menampilkan hasilnya
    - display( zona(dari), zona(ke), hasil_konversi );
 */
-
 function display(dari, ke, hasil) {
    console.log(
       `Dari            :  ${inputWaktu} ${formatZona(dari)} \nKe              :  ${formatZona(ke)} \nHasil Konversi  :  ${hasil}`
