@@ -1,3 +1,5 @@
+"use strict";
+
 /*
    WIB = 105
    WITA = 120
@@ -104,7 +106,3 @@ function display(dari, ke, hasil) {
       `Dari            :  ${inputWaktu} ${formatZona(dari)} \nKe              :  ${formatZona(ke)} \nHasil Konversi  :  ${hasil}`
    );
 }
-
-
-
-

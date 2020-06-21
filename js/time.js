@@ -1,9 +1,10 @@
+"use strict";
+
 class Time {
    constructor(input) {
       this.past = new Date(input);
       this.now = new Date().getTime();
    }
-
 
    // using number of day in javascript
    getDay(numberOfDay) {
@@ -11,27 +12,26 @@ class Time {
       return days[numberOfDay];
    }
 
-
    // using number of month in javascript
    getMonth(numberOfMonth) {
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       return months[numberOfMonth];
    }
 
-
    /*
     * Levels :
-    * Medium (Day, Date Month Year) => (Friday, May 8, 2020)
-    * Easy (Date Month Year) => (May 8, 2020)
+    * hard => (Friday, April 6, 2020)
+    * medium => (April 6, 2020)
+    * easy => (April 2020)
     */
    format(level) {
       if (level === "hard") return `${this.getDay(this.past.getDay())}, ${this.getMonth(this.past.getMonth())} ${this.past.getDate()}, ${this.past.getFullYear()}`;
       if (level === "medium") return `${this.getMonth(this.past.getMonth())} ${this.past.getDate()}, ${this.past.getFullYear()}`;
+      if (level === "easy") return `${this.getMonth(this.past.getMonth())} ${this.past.getFullYear()}`;
       return new Error("Level Not Found");
    }
 
-
-   relativeTime() {
+   fromNow() {
       let result;
 
       let difference = (this.now / 1000) - (this.past.getTime() / 1000);
@@ -55,18 +55,10 @@ class Time {
 }
 
 
-const time = new Time("2020-05-25T03:03:17.215Z");
+const time = new Time("2020-01-01");
 
-console.log(time.relativeTime());
+console.log(time.fromNow());
 console.log(time.format("hard"));
 console.log(time.format("medium"));
-
-
-console.log("\n");
-
-
-const time2 = new Time("2020-06-08T07:54:01.675Z");
-
-console.log(time2.relativeTime());
-
-
+console.log(time.format("easy"));
+console.log(time.format("ultimate"));
