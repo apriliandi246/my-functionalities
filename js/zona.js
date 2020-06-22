@@ -63,13 +63,11 @@ if (hasilKonversi < 10) {
    // ketika menit nya lebih kecil dari 10
    if (menit < 10) {
       hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ 0${hasilKonversi}:0${menit} ${formatZona(bujurKe)}`;
-
       display(bujurDari, bujurKe, hasilZona);
 
       // ketika menit nya lebih besar dari 10
    } else {
       hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ 0${hasilKonversi}:${menit} ${formatZona(bujurKe)}`;
-
       display(bujurDari, bujurKe, hasilZona);
    }
 
@@ -78,13 +76,11 @@ if (hasilKonversi < 10) {
    // ketika menit nya lebih kecil dari 10
    if (menit < 10) {
       hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ ${hasilKonversi}:0${menit} ${formatZona(bujurKe)}`;
-
       display(bujurDari, bujurKe, hasilZona);
 
       // ketika menit nya lebih besar dari 10
    } else {
       hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ ${hasilKonversi}:${menit} ${formatZona(bujurKe)}`;
-
       display(bujurDari, bujurKe, hasilZona);
    }
 }
