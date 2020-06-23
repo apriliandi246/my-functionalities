@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class Time {
    constructor(date) {
@@ -8,13 +8,13 @@ class Time {
 
    // using number of day in javascript date method
    getNameOfDay(numberOfDay) {
-      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       return days[numberOfDay];
    }
 
    // using number of month in javascript date method
    getNameOfMonth(numberOfMonth) {
-      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       return months[numberOfMonth];
    }
 
@@ -34,14 +34,11 @@ class Time {
       if (level === "medium") return `${month} ${date}, ${year}`;
       if (level === "easy") return `${month} ${year}`;
 
-      return new Error("Level Not Found");
+      return new Error('Level Not Found');
    }
 
    fromNow() {
-      let result;
-
       let difference = (this.now / 1000) - (this.past.getTime() / 1000);
-
       let hour = Math.floor(difference / 3600);
       let diff = difference - (hour * 3600);
       let minute = Math.floor(diff / 60);
@@ -51,25 +48,27 @@ class Time {
       let month = Math.floor(week / 4.345);
       let year = Math.floor(month / 12);
 
-      if (year > 0) return result = (year === 1 ? "a year ago" : `${year} years ago`);
-      if (month > 0) return result = (month === 1 ? "a month ago" : `${month} months ago`);
-      if (week > 0) return result = (week === 1 ? "a week ago" : `${week} weeks ago`);
-      if (day > 0) return result = (day === 1 ? "a day ago" : `${day} days ago`);
-      if (hour > 0) return result = (hour === 1 ? "an hour ago" : `${hour} hours ago`);
-      if (minute > 0) return result = (minute === 1 ? "a minute ago" : `${minute} minutes ago`);
+      let result;
 
-      return "a few seconds ago";
+      if (year > 0) return result = (year === 1 ? 'a year ago' : `${year} years ago`);
+      if (month > 0) return result = (month === 1 ? 'a month ago' : `${month} months ago`);
+      if (week > 0) return result = (week === 1 ? 'a week ago' : `${week} weeks ago`);
+      if (day > 0) return result = (day === 1 ? 'a day ago' : `${day} days ago`);
+      if (hour > 0) return result = (hour === 1 ? 'an hour ago' : `${hour} hours ago`);
+      if (minute > 0) return result = (minute === 1 ? 'a minute ago' : `${minute} minutes ago`);
+
+      return 'a few seconds ago';
    }
 }
 
 
-const time = new Time("2020-06-10");
+const time = new Time('2020-06-10');
 
 console.log(time.fromNow());
-console.log(time.format("hard"));
-console.log(time.format("medium"));
-console.log(time.format("easy"));
-console.log(time.format("ultimate"));
+console.log(time.format('hard'));
+console.log(time.format('medium'));
+console.log(time.format('easy'));
+console.log(time.format('ultimate'));
 
-const time2 = new Time("2020-03-09");
+const time2 = new Time('2020-03-09');
 console.log(time2.fromNow());
