@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
    WIB = 105
@@ -8,7 +8,7 @@
 
 
 // masukan waktu
-const inputWaktu = "10:20";
+const inputWaktu = '10:20';
 
 // membuat menjadi array
 const waktu = inputWaktu.split('');
@@ -88,7 +88,7 @@ if (hasilKonversi < 10) {
 
 // fungsi untuk mengembalikan format zona tertentu
 function formatZona(bujur) {
-   const zona = { 105: "WIB", 120: "WITA", 135: "WIT" };
+   const zona = { 105: 'WIB', 120: 'WITA', 135: 'WIT' };
    return zona[bujur];
 }
 

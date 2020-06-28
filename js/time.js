@@ -30,9 +30,9 @@ class Time {
       let day = this.getNameOfDay(this.past.getDay());
       let month = this.getNameOfMonth(this.past.getMonth());
 
-      if (level === "hard") return `${day}, ${month} ${date}, ${year}`;
-      if (level === "medium") return `${month} ${date}, ${year}`;
-      if (level === "easy") return `${month} ${year}`;
+      if (level === 'hard') return `${day}, ${month} ${date}, ${year}`;
+      if (level === 'medium') return `${month} ${date}, ${year}`;
+      if (level === 'easy') return `${month} ${year}`;
 
       return new Error('Level Not Found');
    }
@@ -62,13 +62,10 @@ class Time {
 }
 
 
-const time = new Time('2020-06-10');
+const time = new Time('2020-06-27T19:43:40.807+00:00');
 
 console.log(time.fromNow());
 console.log(time.format('hard'));
 console.log(time.format('medium'));
 console.log(time.format('easy'));
 console.log(time.format('ultimate'));
-
-const time2 = new Time('2020-03-09');
-console.log(time2.fromNow());

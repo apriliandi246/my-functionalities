@@ -1,7 +1,7 @@
 export { };
 
-const inputWaktu: string = "01:09";
-const waktu: string[] = inputWaktu.split("");
+const inputWaktu: string = '01:09';
+const waktu: string[] = inputWaktu.split('');
 
 
 const jam: number = parseInt(waktu[0] + waktu[1]);
@@ -62,9 +62,9 @@ if (wa < 10) {
 
 
 function formatZona(bujur: number) {
-   if (bujur === 105) return "WIB";
-   if (bujur === 120) return "WITA";
-   if (bujur === 135) return "WIT";
+   if (bujur === 105) return 'WIB';
+   if (bujur === 120) return 'WITA';
+   if (bujur === 135) return 'WIT';
 }
 
 
