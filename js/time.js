@@ -38,7 +38,7 @@ class Time {
    }
 
    fromNow() {
-      let difference = (this.now / 1000) - (this.past.getTime() / 1000);
+      let difference = (this.now / 1000) - (this.past / 1000);
       let hour = Math.floor(difference / 3600);
       let diff = difference - (hour * 3600);
       let minute = Math.floor(diff / 60);
@@ -62,10 +62,9 @@ class Time {
 }
 
 
-const time = new Time('2020-06-27T19:43:40.807+00:00');
+const time = new Time('2020-07-05T06:50:54.985+00:00');
 
 console.log(time.fromNow());
 console.log(time.format('hard'));
 console.log(time.format('medium'));
 console.log(time.format('easy'));
-console.log(time.format('ultimate'));
