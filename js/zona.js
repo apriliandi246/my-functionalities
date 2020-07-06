@@ -6,99 +6,62 @@
    WIT = 135
 */
 
+const waktu = {
+   jam: 10,
+   menit: 10,
+   detik: 10
+}
 
-// masukan waktu
-const inputWaktu = '10:20';
+const { jam, menit, detik } = waktu;
 
-// membuat menjadi array
-const waktu = inputWaktu.split('');
-
-// mengambil jam dan konvert menjadi angka
-const jam = parseInt(waktu[0] + waktu[1]);
-
-// mengambil menit konvert menjadi angka
-const menit = parseInt(waktu[3] + waktu[4]);
-
+const formatJam = `${jam < 10 ? '0' + jam : jam}`;
+const formatMenit = `${menit < 10 ? '0' + menit : menit}`;
+const formatDetik = `${detik < 10 ? '0' + detik : detik}`;
 
 
-// dari - (bujur zona)
-const bujurDari = 135;
-
-// konvert ke - (bujur zona)
-const bujurKe = 105;
+const bujurDari = 105;
+const bujurKe = 135;
 
 
 
 // selisih waktu (jam)
-const sw = Math.floor(((bujurKe - bujurDari) * 4) / 60);
-
+const selisihWaktu = Math.floor(((bujurKe - bujurDari) * 4) / 60);
 
 // hasilnya dalam bentuk jam
-let hasilKonversi = jam + sw;
-
+let hasilKonversi = jam + selisihWaktu;
 
 // menentukan format jam yang benar ketika waktunya mencapai dini hari
 if (bujurDari === 105) {
-   if (bujurKe === 120 && jam === 23) hasilKonversi = -1 + sw;
-   if (bujurKe === 135 && jam === 22) hasilKonversi = -2 + sw
-   if (bujurKe === 135 && jam === 23) hasilKonversi = -1 + sw;
+   if (bujurKe === 120 && jam === 23) hasilKonversi = -1 + selisihWaktu;
+   if (bujurKe === 135 && jam === 22) hasilKonversi = -2 + selisihWaktu
+   if (bujurKe === 135 && jam === 23) hasilKonversi = -1 + selisihWaktu;
 
 } else if (bujurDari === 120) {
-   if (bujurKe === 105 && jam === 0) hasilKonversi = 24 + sw;
-   if (bujurKe === 135 && jam === 23) hasilKonversi = -1 + sw;
+   if (bujurKe === 105 && jam === 0) hasilKonversi = 24 + selisihWaktu;
+   if (bujurKe === 135 && jam === 23) hasilKonversi = -1 + selisihWaktu;
 
 } else {
-   if (bujurKe === 120 && jam === 0) hasilKonversi = 24 + sw;
-   if (bujurKe === 105 && jam === 0) hasilKonversi = 24 + sw;
-   if (bujurKe === 105 && jam === 1) hasilKonversi = 25 + sw;
+   if (bujurKe === 120 && jam === 0) hasilKonversi = 24 + selisihWaktu;
+   if (bujurKe === 105 && jam === 0) hasilKonversi = 24 + selisihWaktu;
+   if (bujurKe === 105 && jam === 1) hasilKonversi = 25 + selisihWaktu;
 }
 
 
 
 // hasil dan membuat formatnya
-let hasilZona;
+const hasilZona = `${formatJam}:${formatMenit}:${formatDetik} ${formatZona(bujurDari)}  ⇄  ${hasilKonversi < 10 ? '0' + hasilKonversi : hasilKonversi}:${formatMenit}:${formatDetik} ${formatZona(bujurKe)}`;
 
-// ketika hasil "hasilKonversi" (formatnya jam) lebih kecil dari 10
-if (hasilKonversi < 10) {
-   // ketika menit nya lebih kecil dari 10
-   if (menit < 10) {
-      hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ 0${hasilKonversi}:0${menit} ${formatZona(bujurKe)}`;
-      display(bujurDari, bujurKe, hasilZona);
-
-      // ketika menit nya lebih besar dari 10
-   } else {
-      hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ 0${hasilKonversi}:${menit} ${formatZona(bujurKe)}`;
-      display(bujurDari, bujurKe, hasilZona);
-   }
-
-   // ketika hasil "hasilKonversi" (formatnya jam) lebih besar dari 10
-} else {
-   // ketika menit nya lebih kecil dari 10
-   if (menit < 10) {
-      hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ ${hasilKonversi}:0${menit} ${formatZona(bujurKe)}`;
-      display(bujurDari, bujurKe, hasilZona);
-
-      // ketika menit nya lebih besar dari 10
-   } else {
-      hasilZona = `${inputWaktu} ${formatZona(bujurDari)} ⇄ ${hasilKonversi}:${menit} ${formatZona(bujurKe)}`;
-      display(bujurDari, bujurKe, hasilZona);
-   }
-}
+tampilkan(bujurDari, bujurKe, hasilZona);
 
 
-// fungsi untuk mengembalikan format zona tertentu
+
 function formatZona(bujur) {
    const zona = { 105: 'WIB', 120: 'WITA', 135: 'WIT' };
    return zona[bujur];
 }
 
-
-/* 
-   - fungsi menampilkan hasilnya
-   - display( zona(dari), zona(ke), hasil_konversi );
-*/
-function display(dari, ke, hasil) {
+function tampilkan(dari, ke, hasil) {
    console.log(
-      `Dari            :  ${inputWaktu} ${formatZona(dari)} \nKe              :  ${formatZona(ke)} \nHasil Konversi  :  ${hasil}`
+      `Dari \t\t: ${formatJam}:${formatMenit}:${formatDetik} ${formatZona(dari)} \nKoversi ke \t: ${formatZona(ke)} \nHasil Konversi \t: ${hasil} `
    );
 }
