@@ -37,12 +37,10 @@ function ubahZona({ jam, menit, detik, keBujur, dariBujur }) {
    return `${formatJam}:${formatMenit}:${formatDetik} ${formatZona(dariBujur)}  ⇄  ${hasilKonversi < 10 ? '0' + hasilKonversi : hasilKonversi}:${formatMenit}:${formatDetik} ${formatZona(keBujur)}`;
 }
 
-
 function formatZona(bujur) {
    const zona = { 105: 'WIB', 120: 'WITA', 135: 'WIT' };
    return zona[bujur];
 }
-
 
 const waktu = {
    jam: 10,

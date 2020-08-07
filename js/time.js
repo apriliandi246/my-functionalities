@@ -2,19 +2,32 @@
 
 class Time {
    constructor(date) {
-      this.past = new Date(date);
-      this.now = new Date().getTime();
+      Object.defineProperty(this, 'past', {
+         value: new Date(date),
+         writable: false,
+         enumerable: true,
+         configurable: false
+      });
+
+      Object.defineProperty(this, 'now', {
+         value: new Date().getTime(),
+         writable: false,
+         enumerable: true,
+         configurable: false
+      });
    }
 
    // using number of day in javascript date method
    getNameOfDay(numberOfDay) {
       const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
       return days[numberOfDay];
    }
 
    // using number of month in javascript date method
    getNameOfMonth(numberOfMonth) {
       const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
       return months[numberOfMonth];
    }
 
@@ -30,9 +43,9 @@ class Time {
       let day = this.getNameOfDay(this.past.getDay());
       let month = this.getNameOfMonth(this.past.getMonth());
 
-      if (level === 'hard') return `${day}, ${month} ${date}, ${year}`;
-      if (level === 'medium') return `${month} ${date}, ${year}`;
       if (level === 'easy') return `${month} ${year}`;
+      if (level === 'medium') return `${month} ${date}, ${year}`;
+      if (level === 'hard') return `${day}, ${month} ${date}, ${year}`;
 
       return new Error('Level Not Found');
    }
