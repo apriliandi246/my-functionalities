@@ -20,14 +20,12 @@ class Time {
    // using number of day in javascript date method
    getNameOfDay(numberOfDay) {
       const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
       return days[numberOfDay];
    }
 
    // using number of month in javascript date method
    getNameOfMonth(numberOfMonth) {
       const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
       return months[numberOfMonth];
    }
 

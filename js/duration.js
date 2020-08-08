@@ -1,3 +1,5 @@
+'use strict';
+
 function getDuration(time1, time2) {
    const duration = {};
 

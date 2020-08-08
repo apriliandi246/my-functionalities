@@ -1,53 +1,58 @@
 'use strict';
 
 /* 
-   Bujur standar wilayah Indonesia :
+   Indonesian standard longitude :
    WIB = 105
    WITA = 120
    WIT = 135
 */
 
-function ubahZona({ jam, menit, detik, keBujur, dariBujur }) {
-   const formatJam = `${jam < 10 ? '0' + jam : jam}`;
-   const formatMenit = `${menit < 10 ? '0' + menit : menit}`;
-   const formatDetik = `${detik < 10 ? '0' + detik : detik}`;
 
-   // selisih waktu (jam)
-   const selisihWaktu = Math.floor(((keBujur - dariBujur) * 4) / 60);
-
-   // hasilnya dalam bentuk jam
-   let hasilKonversi = jam + selisihWaktu;
-
-   // menentukan format jam yang benar ketika waktunya mencapai dini hari
-   if (dariBujur === 105) {
-      if (keBujur === 120 && jam === 23) hasilKonversi = -1 + selisihWaktu;
-      if (keBujur === 135 && jam === 22) hasilKonversi = -2 + selisihWaktu
-      if (keBujur === 135 && jam === 23) hasilKonversi = -1 + selisihWaktu;
-
-   } else if (dariBujur === 120) {
-      if (keBujur === 105 && jam === 0) hasilKonversi = 24 + selisihWaktu;
-      if (keBujur === 135 && jam === 23) hasilKonversi = -1 + selisihWaktu;
-
-   } else {
-      if (keBujur === 120 && jam === 0) hasilKonversi = 24 + selisihWaktu;
-      if (keBujur === 105 && jam === 0) hasilKonversi = 24 + selisihWaktu;
-      if (keBujur === 105 && jam === 1) hasilKonversi = 25 + selisihWaktu;
-   }
-
-   return `${formatJam}:${formatMenit}:${formatDetik} ${formatZona(dariBujur)}  ⇄  ${hasilKonversi < 10 ? '0' + hasilKonversi : hasilKonversi}:${formatMenit}:${formatDetik} ${formatZona(keBujur)}`;
-}
-
-function formatZona(bujur) {
+function zoneFormat(bujur) {
    const zona = { 105: 'WIB', 120: 'WITA', 135: 'WIT' };
    return zona[bujur];
 }
 
-const waktu = {
-   jam: 10,
-   menit: 10,
-   detik: 10,
-   keBujur: 135,
-   dariBujur: 105
+
+function zoneConvert({ hour, minute, second, fromLongitude, toLongitude }) {
+   const hourFormat = `${hour < 10 ? '0' + hour : hour}`;
+   const minuteFormat = `${minute < 10 ? '0' + minute : minute}`;
+   const secondFormat = `${second < 10 ? '0' + second : second}`;
+
+   // selisih waktu (jam)
+   const timeDifference = Math.floor(((toLongitude - fromLongitude) * 4) / 60);
+
+   // hasilnya dalam bentuk jam
+   let conversionResult = hour + timeDifference;
+
+   // menentukan format jam yang benar ketika waktunya mencapai dini hari
+   if (fromLongitude === 105) {
+      if (toLongitude === 120 && hour === 23) conversionResult = -1 + timeDifference;
+      if (toLongitude === 135 && hour === 22) conversionResult = -2 + timeDifference
+      if (toLongitude === 135 && hour === 23) conversionResult = -1 + timeDifference;
+   }
+
+   if (fromLongitude === 120) {
+      if (toLongitude === 105 && hour === 0) conversionResult = 24 + timeDifference;
+      if (toLongitude === 135 && hour === 23) conversionResult = -1 + timeDifference;
+   }
+
+   if (fromLongitude === 135) {
+      if (toLongitude === 120 && hour === 0) conversionResult = 24 + timeDifference;
+      if (toLongitude === 105 && hour === 0) conversionResult = 24 + timeDifference;
+      if (toLongitude === 105 && hour === 1) conversionResult = 25 + timeDifference;
+   }
+
+   return `${hourFormat}:${minuteFormat}:${secondFormat} ${zoneFormat(fromLongitude)}  ⇄  ${conversionResult < 10 ? '0' + conversionResult : conversionResult}:${minuteFormat}:${secondFormat} ${zoneFormat(toLongitude)}`;
 }
 
-console.log(ubahZona(waktu));
+
+const time = {
+   hour: 10,
+   minute: 2,
+   second: 4,
+   fromLongitude: 135,
+   toLongitude: 105
+}
+
+console.log(zoneConvert(time));
