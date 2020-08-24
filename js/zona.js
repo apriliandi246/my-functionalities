@@ -8,9 +8,9 @@
 */
 
 
-function zoneFormat(bujur) {
-   const zona = { 105: 'WIB', 120: 'WITA', 135: 'WIT' };
-   return zona[bujur];
+function zoneFormat(longitude) {
+   const zone = { 105: 'WIB', 120: 'WITA', 135: 'WIT' };
+   return zone[longitude];
 }
 
 

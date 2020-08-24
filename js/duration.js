@@ -1,29 +1,29 @@
 'use strict';
 
-function getDuration(time1, time2) {
+function getDuration(past, now) {
    const duration = {};
 
    // set second
-   if (time2.second >= time1.second) {
-      duration.second = time2.second - time1.second;
+   if (now.second >= past.second) {
+      duration.second = now.second - past.second;
    } else {
-      duration.second = (time2.second + 60) - time1.second;
-      time2.minute = time2.minute - 1;
+      duration.second = (now.second + 60) - past.second;
+      now.minute = now.minute - 1;
    }
 
    // set minute
-   if (time2.minute >= time1.minute) {
-      duration.minute = time2.minute - time1.minute;
+   if (now.minute >= past.minute) {
+      duration.minute = now.minute - past.minute;
    } else {
-      duration.minute = (time2.minute + 60) - time1.minute;
-      time2.hour = time2.hour - 1;
+      duration.minute = (now.minute + 60) - past.minute;
+      now.hour = now.hour - 1;
    }
 
    // set hour
-   if (time2.hour >= time1.hour) {
-      duration.hour = time2.hour - time1.hour;
+   if (now.hour >= past.hour) {
+      duration.hour = now.hour - past.hour;
    } else {
-      duration.hour = (time2.hour + 24) - time1.hour;
+      duration.hour = (now.hour + 24) - past.hour;
    }
 
    const { hour, minute, second } = duration;
@@ -33,7 +33,7 @@ function getDuration(time1, time2) {
 
 
 const time1 = {
-   hour: 13,
+   hour: 12,
    minute: 0,
    second: 0
 }
