@@ -17,114 +17,83 @@ class Time {
       });
    }
 
-   getNameOfDay(numberOfDay) {
-      const days = [
-         "Sunday",
-         "Monday",
-         "Tuesday",
-         "Wednesday",
-         "Thursday",
-         "Friday",
-         "Saturday",
-      ];
-      return days[numberOfDay];
-   }
-
-   getAbbreviationOfDay(numberOfDay) {
-      const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-      return days[numberOfDay];
-   }
-
-   getNameOfMonth(numberOfMonth) {
-      const months = [
-         "January",
-         "February",
-         "March",
-         "April",
-         "May",
-         "June",
-         "July",
-         "August",
-         "September",
-         "October",
-         "November",
-         "December",
-      ];
-      return months[numberOfMonth];
-   }
-
-   getAbbreviationOfMonth(numberOfMonth) {
-      const months = [
-         "Jan",
-         "Feb",
-         "Mar",
-         "Apr",
-         "May",
-         "Jun",
-         "Jul",
-         "Aug",
-         "Sept",
-         "Oct",
-         "Nov",
-         "Dec",
-      ];
-      return months[numberOfMonth];
-   }
-
-   getAbbreviationOfTime(time) {
-      const times = {
-         second: "sec",
-         minute: "min",
-         hour: "hr",
-      };
-      return times[time];
-   }
-
-   /*
-    * Levels :
-    * hard => (Friday, April 6, 2020)
-    * medium => (April 6, 2020)
-    * easy => (April 2020)
-    */
-   getDateFormat(level, format) {
-      if (["easy", "medium", "hard"].includes(level) === false) {
-         throw new Error("Level Not Found");
-      }
-
+   getNameOfDay(numberOfDay, format) {
       if (["normal", "short"].includes(format) === false) {
          throw new Error("Format Not Found");
       }
 
-      let date = this.past.getDate();
-      let year = this.past.getFullYear();
-      let day =
-         format === "normal"
-            ? this.getNameOfDay(this.past.getDay())
-            : this.getAbbreviationOfDay(this.past.getDay());
-      let month =
-         format === "normal"
-            ? this.getNameOfMonth(this.past.getMonth())
-            : this.getAbbreviationOfMonth(this.past.getMonth());
-
-      let formatDate = {
-         easy: `${month} ${year}`,
-         medium: `${month} ${date}, ${year}`,
-         hard: `${day}, ${month} ${date}, ${year}`,
+      const days = {
+         1: format === "normal" ? "Sunday" : "Sun",
+         2: format === "normal" ? "Monday" : "Mon",
+         3: format === "normal" ? "Tuesday" : "Tues",
+         4: format === "normal" ? "Wednesday" : "Wed",
+         5: format === "normal" ? "Thursday" : "Thurs",
+         6: format === "normal" ? "Friday" : "Fri",
+         7: format === "normal" ? "Saturday" : "Sat",
       };
 
-      return formatDate[level];
+      return days[numberOfDay + 1];
    }
 
-   fromNow() {
-      let difference = this.now / 1000 - this.past / 1000;
-      let hour = Math.floor(difference / 3600);
-      let diff = difference - hour * 3600;
-      let minute = Math.floor(diff / 60);
+   getNameOfMonth(numberOfMonth, format) {
+      if (["normal", "short"].includes(format) === false) {
+         throw new Error("Format Not Found");
+      }
 
-      let day = Math.floor(hour / 24);
-      let week = Math.floor(day / 7);
-      let month = Math.floor(week / 4.345);
-      let year = Math.floor(month / 12);
+      const months = {
+         1: format === "normal" ? "January" : "Jan",
+         2: format === "normal" ? "February" : "Feb",
+         3: format === "normal" ? "March" : "Mar",
+         4: format === "normal" ? "April" : "Apr",
+         5: format === "normal" ? "May" : "May",
+         6: format === "normal" ? "June" : "Jun",
+         7: format === "normal" ? "July" : "Jul",
+         8: format === "normal" ? "August" : "Aug",
+         9: format === "normal" ? "September" : "Sept",
+         10: format === "normal" ? "October" : "Oct",
+         11: format === "normal" ? "November" : "Nov",
+         12: format === "normal" ? "December" : "Dec",
+      };
+
+      return months[numberOfMonth + 1];
+   }
+
+   getShortRt() {
+      const difference = this.now / 1000 - this.past / 1000;
+      const hour = Math.floor(difference / 3600);
+      const diff = difference - hour * 3600;
+      const minute = Math.floor(diff / 60);
+      const day = Math.floor(hour / 24);
+      const month = Math.floor(day / 30.417);
+      const year = Math.floor(month / 12);
+
+      if (year > 0)
+         return `${this.getAbbreviationOfMonth(
+            this.past.getMonth()
+         )} ${this.past.getDate()}, ${this.past.getFullYear()}`;
+
+      if (month > 0 || day > 0)
+         return `${this.getAbbreviationOfMonth(
+            this.past.getMonth()
+         )} ${this.past.getDate()}`;
+
+      if (hour > 0) return `${hour}h`;
+      if (minute > 0) return `${minute}m`;
+
+      return Math.floor(difference) > 4
+         ? `${Math.floor(difference)} seconds ago`
+         : "a few seconds ago";
+   }
+
+   getNormalRt() {
+      const difference = this.now / 1000 - this.past / 1000;
+      const hour = Math.floor(difference / 3600);
+      const diff = difference - hour * 3600;
+      const minute = Math.floor(diff / 60);
+      const day = Math.floor(hour / 24);
+      const week = Math.floor(day / 7);
+      const month = Math.floor(week / 4.345);
+      const year = Math.floor(month / 12);
 
       if (year > 0) return year === 1 ? "a year ago" : `${year} years ago`;
       if (month > 0) return month === 1 ? "a month ago" : `${month} months ago`;
@@ -138,11 +107,42 @@ class Time {
          ? `${Math.floor(difference)} seconds ago`
          : "a few seconds ago";
    }
+
+   format(level, format) {
+      if (["easy", "medium", "hard"].includes(level) === false) {
+         throw new Error("Level Not Found");
+      }
+
+      if (["normal", "short"].includes(format) === false) {
+         throw new Error("Format Not Found");
+      }
+
+      const date = this.past.getDate();
+      const year = this.past.getFullYear();
+      const day = this.getNameOfDay(this.past.getDay(), format);
+      const month = this.getNameOfMonth(this.past.getMonth(), format);
+
+      const formatDate = {
+         easy: `${month} ${year}`,
+         medium: `${month} ${date}, ${year}`,
+         hard: `${day}, ${month} ${date}, ${year}`,
+      };
+
+      return formatDate[level];
+   }
+
+   fromNow(format) {
+      if (["normal", "short"].includes(format) === false) {
+         throw new Error("Format Not Found");
+      }
+      if (format === "short") return this.getShortRt();
+      if (format === "normal") return this.getNormalRt();
+   }
 }
 
-const time = new Time("2020-12-11T12:08:22.532Z");
+const time = new Time("2020-12-13T07:36:54.941Z");
 
-console.log(time.fromNow());
-console.log(time.getDateFormat("hard", "normal"));
-console.log(time.getDateFormat("medium", "short"));
-console.log(time.getDateFormat("easy", "short"));
+console.log(time.fromNow("normal"));
+console.log(time.format("hard", "short"));
+console.log(time.format("medium", "short"));
+console.log(time.format("easy", "short"));
