@@ -32,11 +32,11 @@ function sortCssProperties(data, format) {
       throw new Error(`Format ${format} not found`);
    }
 
-   const arrProperties = data.trim().split(";");
-
-   const result = arrProperties
+   const result = data
+      .trim()
+      .split(";")
       .filter((property) => property.toString().trim() !== "")
-      .map((property) => property.toString().trim() + ";")
+      .map((property) => `\t${property.toString().trim()};`)
       .sort((a, b) =>
          format === "min" ? a.length - b.length : b.length - a.length
       )
