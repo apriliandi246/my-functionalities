@@ -45,4 +45,4 @@ function sortCssProperties(data, format) {
    return result;
 }
 
-console.log(sortCssProperties(properties, "max"));
+console.log(sortCssProperties(properties, "min"));

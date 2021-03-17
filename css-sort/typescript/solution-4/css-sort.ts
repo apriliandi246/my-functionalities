@@ -47,4 +47,4 @@ function sortCssProperties(data: string, format: string): string {
    return result;
 }
 
-console.log(sortCssProperties(properties, "max"));
+console.log(sortCssProperties(properties, "min"));
