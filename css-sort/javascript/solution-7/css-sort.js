@@ -57,10 +57,7 @@ section .component {
 
 function onSort(format, cssCode) {
    let finalResult = "";
-   const ast = parse(cssCode, {
-      parseValue: false,
-   });
-
+   const ast = parse(cssCode, { parseValue: false });
    const result = generate(ast).split("}");
 
    result.pop();
