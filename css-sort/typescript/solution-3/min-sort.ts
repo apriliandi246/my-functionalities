@@ -19,32 +19,32 @@ const arrProperties: string[] = `
          "b c c" 
          "b c c";
 `
-   .trim()
-   .split("\n");
+	.trim()
+	.split("\n");
 
 let minIndex: number;
 let currentProperty: string;
 
 // sort the properties
 for (let firstIndex = 0; firstIndex < arrProperties.length; firstIndex++) {
-   minIndex = firstIndex;
+	minIndex = firstIndex;
 
-   for (
-      let secondIndex = firstIndex;
-      secondIndex < arrProperties.length;
-      secondIndex++
-   ) {
-      if (
-         arrProperties[secondIndex].toString().trim().length <
-         arrProperties[minIndex].toString().trim().length
-      ) {
-         minIndex = secondIndex;
-      }
-   }
+	for (
+		let secondIndex = firstIndex;
+		secondIndex < arrProperties.length;
+		secondIndex++
+	) {
+		if (
+			arrProperties[secondIndex].toString().trim().length <
+			arrProperties[minIndex].toString().trim().length
+		) {
+			minIndex = secondIndex;
+		}
+	}
 
-   currentProperty = arrProperties[firstIndex].toString().trim();
-   arrProperties[firstIndex] = arrProperties[minIndex].toString().trim();
-   arrProperties[minIndex] = currentProperty;
+	currentProperty = arrProperties[firstIndex].toString().trim();
+	arrProperties[firstIndex] = arrProperties[minIndex].toString().trim();
+	arrProperties[minIndex] = currentProperty;
 }
 
 console.log(arrProperties.join("\n"));

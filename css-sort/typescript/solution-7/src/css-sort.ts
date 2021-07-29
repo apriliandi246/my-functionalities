@@ -100,32 +100,32 @@ const cssCode: string = `
 `;
 
 function onSort(format: string, cssCode: string): string {
-   let finalResult = "";
-   const ast = parse(cssCode, { parseValue: false });
-   const result = generate(ast).split("}");
+	let finalResult = "";
+	const ast = parse(cssCode, { parseValue: false });
+	const result = generate(ast).split("}");
 
-   result.pop();
+	result.pop();
 
-   for (let index = 0; index < result.length; index++) {
-      const cssNode = result[index].split("{");
-      const cssSelector = cssNode[0].trim();
+	for (let index = 0; index < result.length; index++) {
+		const cssNode = result[index].split("{");
+		const cssSelector = cssNode[0].trim();
 
-      const cssProperties = cssNode[1]
-         .trim()
-         .split(";")
-         .filter((property) => property.trim() !== "")
-         .map((property) => property.trim() + ";")
-         .sort((a, b) =>
-            format === "min" ? a.length - b.length : b.length - a.length
-         )
-         .join("\n");
+		const cssProperties = cssNode[1]
+			.trim()
+			.split(";")
+			.filter((property) => property.trim() !== "")
+			.map((property) => property.trim() + ";")
+			.sort((a, b) =>
+				format === "min" ? a.length - b.length : b.length - a.length
+			)
+			.join("\n");
 
-      finalResult += `${cssSelector} {\n ${cssProperties} \n}${
-         index === result.length - 1 ? "\n" : "\n\n"
-      }`;
-   }
+		finalResult += `${cssSelector} {\n ${cssProperties} \n}${
+			index === result.length - 1 ? "\n" : "\n\n"
+		}`;
+	}
 
-   return finalResult;
+	return finalResult;
 }
 
 console.log(onSort("max", cssCode));

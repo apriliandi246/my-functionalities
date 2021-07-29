@@ -32,21 +32,21 @@ const cssProperties: string = `
 `;
 
 function onSort(format: string, data: string): string {
-   const cssSelector: string[] = data.trim().split("{");
-   const properties: string = cssSelector.splice(1).join("").trim();
+	const cssSelector: string[] = data.trim().split("{");
+	const properties: string = cssSelector.splice(1).join("").trim();
 
-   const cssProperties: string = properties
-      .slice(0, properties.length - 1)
-      .trim()
-      .split(";")
-      .filter((property) => property.trim() !== "")
-      .map((property) => `\t${property.trim()};`)
-      .sort((a, b) =>
-         format === "min" ? a.length - b.length : b.length - a.length
-      )
-      .join("\n");
+	const cssProperties: string = properties
+		.slice(0, properties.length - 1)
+		.trim()
+		.split(";")
+		.filter((property) => property.trim() !== "")
+		.map((property) => `\t${property.trim()};`)
+		.sort((a, b) =>
+			format === "min" ? a.length - b.length : b.length - a.length
+		)
+		.join("\n");
 
-   return `${cssSelector.join("").trim()} {
+	return `${cssSelector.join("").trim()} {
       ${cssProperties}
 }
    `;

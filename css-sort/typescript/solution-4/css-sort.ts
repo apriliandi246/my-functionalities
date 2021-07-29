@@ -30,21 +30,21 @@ const properties: string = `
 `;
 
 function sortCssProperties(data: string, format: string): string {
-   if (format !== "min" && format !== "max") {
-      throw new Error(`Format ${format} not found`);
-   }
+	if (format !== "min" && format !== "max") {
+		throw new Error(`Format ${format} not found`);
+	}
 
-   const result: string = data
-      .trim()
-      .split(";")
-      .filter((property) => property.toString().trim() !== "")
-      .map((property) => `\t${property.toString().trim()};`)
-      .sort((a, b) =>
-         format === "min" ? a.length - b.length : b.length - a.length
-      )
-      .join("\n");
+	const result: string = data
+		.trim()
+		.split(";")
+		.filter((property) => property.toString().trim() !== "")
+		.map((property) => `\t${property.toString().trim()};`)
+		.sort((a, b) =>
+			format === "min" ? a.length - b.length : b.length - a.length
+		)
+		.join("\n");
 
-   return result;
+	return result;
 }
 
 console.log(sortCssProperties(properties, "min"));
