@@ -20,9 +20,10 @@ Some functions which are for my personal projects.
 
 Here's the lists.
 
--  `css-sort` - Functinality for my Vscode extension project that has some more than one solution on it.
--  `time/time.js` - Functionality to get the `timeago`.
--  `time/zona.js` - Functionality to get different times in a different zone in Indonesia.
--  `time/duration.js` - Functinality to get duration between two different time.
+- `css-sort` - Functinality for my Vscode extension project that has some more than one solution on it.
+- `time/time.js` - Functionality to get the `timeago`.
+- `time/zona.js` - Functionality to get different times in a different zone in Indonesia.
+- `time/duration.js` - Functinality to get duration between two different time.
+- `tailwind-utility-sorter` - Functionality for sorting Tailwind utility class based on `CSS` box model concept.
 
 <h3 align="right">(⌐■_■)</h3>
