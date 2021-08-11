@@ -15,10 +15,7 @@ const getOutlineUtility = require("./utils/getOutlineUtility");
 const getPaddingUtility = require("./utils/getPaddingUtility");
 const getBoxShadowUtility = require("./utils/getBoxShadowUtility");
 
-let utilitiesClass =
-	`button-primary w-full flex mb-8 justify-between items-center shadow-custom rounded-xl py-10 px-12 grid-cols-[1fr,700px,2fr] !font-medium !flex sm:hover:!tw-font-bold bg-red-500/25 border-2 border-t-blue-500 border-r-pink-500 border-b-green-500 border-l-yellow-500`
-		.trim()
-		.split(" ");
+let utilitiesClass = `bg-dark bg-blend-screen`.trim().split(" ");
 
 sortingUtilities(utilitiesClass);
 
@@ -147,7 +144,7 @@ function sortingUtilities(utilitiesClass) {
 
 	console.log(utilitiesClass);
 	console.log("\n");
-	console.log(result.join(" ").trim());
+	console.log(result.join(" "));
 	console.log("\n");
 	console.log(utilities);
 }

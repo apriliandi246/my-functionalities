@@ -6,7 +6,7 @@ function getEffectUtility(utility, utilities, userUtilities) {
 	if (
 		utility.match(/opacity-/) ||
 		utility.match(/mix-blend-/) ||
-		utility.match(/\bbg-blend-/)
+		utility.match(/bg-blend-[\w]+/)
 	) {
 		if (getResponsiveUtility(utility, utilities) !== "") {
 			utilities.responsive[getResponsiveUtility(utility, utilities)].push(
