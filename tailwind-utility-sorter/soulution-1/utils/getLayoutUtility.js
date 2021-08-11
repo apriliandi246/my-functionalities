@@ -2,7 +2,7 @@ const getStateUtility = require("./getStateUtility");
 const getDarkModeUtility = require("./getDarkModeUtility");
 const getResponsiveUtility = require("./getResponsiveUtility");
 
-function getLayoutUtility(utility, utilities) {
+function getLayoutUtility(utility, utilities, userUtilities) {
 	if (
 		utility.match(/z-/) ||
 		utility.match(/top-/) ||
@@ -52,16 +52,20 @@ function getLayoutUtility(utility, utilities) {
 				utilities.responsive[getResponsiveUtility(utility, utilities)].push(
 					utility
 				);
+				userUtilities[userUtilities.indexOf(utility)] = undefined;
 			} else if (getStateUtility(utility, utilities) === true) {
 				utilities.states.push(utility);
+				userUtilities[userUtilities.indexOf(utility)] = undefined;
 			} else if (getDarkModeUtility(utility, utilities) === true) {
 				utilities.darkMode.push(utility);
+				userUtilities[userUtilities.indexOf(utility)] = undefined;
 			} else {
 				if (
 					!utility.match(/border/) &&
 					utilities.layout.includes(utility) === false
 				) {
 					utilities.layout.push(utility);
+					userUtilities[userUtilities.indexOf(utility)] = undefined;
 				}
 			}
 		}
