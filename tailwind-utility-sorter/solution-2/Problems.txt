@@ -1,0 +1,69 @@
+🚀 New utility class :
+
+👉 Before and after pseudo-element variants
+	👀 before: & after:
+	👀 before:block before:bg-blue-500
+	👀 after:flex after:bg-pink-300
+
+👉 First-letter/line variants
+	👀 first-letter & first-line 
+	👀 first-letter:text-4xl
+	👀 first-letter:font-bold
+
+👉 Selected text variants
+	👀 selection 
+	👀 selection:bg-pink-200
+
+👉 List marker variants
+	👀 marker 
+	👀 marker:text-gray-500
+	👀 marker:font-medium
+
+👉 List marker variants
+	👀 peer-* & group-*
+	👀 peer-checked:bg-blue-500
+	👀 marker:font-medium
+
+👉 Exhaustive pseudo-class support
+	👀 only (only-child)
+	👀 first-of-type
+	👀 last-of-type
+	👀 only-of-type
+	👀 target
+	👀 default
+	👀 indeterminate
+	👀 placeholder-shown
+	👀 autofill
+	👀 required
+	👀 valid
+	👀 invalid
+	👀 in-range
+	👀 out-of-range
+
+
+
+🚀 Background origin utilities :
+	👀 background-origin
+	👀 bg-origin-border
+	👀 bg-origin-paddin 
+	👀 bg-origin-content
+
+
+
+🚀 Extended arbitrary value support :
+
+👉 Currently, the supported types are:
+	👀 length
+	👀 color
+	👀 angle
+	👀 list
+
+👉 Example :
+	👀 col-start-[73]
+	👀 placeholder-[#aabbcc] 
+	👀 object-[50%]
+	👀 text-[color:var(--mystery-var) 
+
+
+
+🚀 Separate fixed value from web standard and custom value like size/length(px, %, em, rem), color (color name, hex, rgb) and etc.
