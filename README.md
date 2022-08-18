@@ -4,7 +4,7 @@
 
 ### 👨‍💻 About
 
-Some functions which are for my personal projects.
+Some functionalities to help me in some projects....
 
 <h3 align="center">. . .</h3>
 
